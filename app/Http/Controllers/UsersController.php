@@ -12,10 +12,20 @@ class UsersController extends Controller
 {
     public function index()
     {
+        // $json = array(
+        //     "message" => "None"
+        // );
+        // echo json_encode($json, true);
+
+        $CPU = DB::table('Users')->select('*')->get();
         $json = array(
-            "message" => "None"
+
+            "status" => 200,
+            "records" => count($CPU),
+            "users" => $CPU
+
         );
-        echo json_encode($json, true);
+        return json_encode($json, true);
     }
 
     public function store(Request $request)
